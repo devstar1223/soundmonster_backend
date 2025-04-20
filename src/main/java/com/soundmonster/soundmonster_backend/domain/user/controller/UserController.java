@@ -8,14 +8,15 @@ import com.soundmonster.soundmonster_backend.global.dto.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static com.soundmonster.soundmonster_backend.domain.user.mapper.UserDtoMapper.toPostUsersResponse;
 import static com.soundmonster.soundmonster_backend.domain.user.mapper.UserDtoMapper.toServicePostUsersRequest;
 
+@CrossOrigin(origins = {
+        "http://127.0.0.1:3000",
+        "http://localhost:3000"
+})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/users")
