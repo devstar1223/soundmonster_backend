@@ -3,6 +3,7 @@ package com.soundmonster.soundmonster_backend.domain.user.service;
 import com.soundmonster.soundmonster_backend.domain.user.dto.ServicePostUsersRequest;
 import com.soundmonster.soundmonster_backend.domain.user.dto.ServicePostUsersResponse;
 import com.soundmonster.soundmonster_backend.domain.user.entity.User;
+import com.soundmonster.soundmonster_backend.domain.user.entity.UserRole;
 import com.soundmonster.soundmonster_backend.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ public class UserService {
                 servicePostUsersRequest.getName(),
                 servicePostUsersRequest.getEmail(),
                 servicePostUsersRequest.getNickname(),
+                UserRole.USER,
                 true
         );
 

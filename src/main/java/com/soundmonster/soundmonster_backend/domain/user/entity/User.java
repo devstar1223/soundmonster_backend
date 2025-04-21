@@ -35,23 +35,29 @@ public class User extends BaseEntity {
     @Column(name = "isActive", nullable = false)
     private boolean isActive;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "userRole", nullable = false)
+    private UserRole userRole;
+
     @Builder
-    private User(String username, String password, String name, String email, String nickname, boolean isActive) {
+    private User(String username, String password, String name, String email, String nickname, boolean isActive, UserRole userRole) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
         this.nickname = nickname;
+        this.userRole = userRole;
         this.isActive = isActive;
     }
 
-    public static User of(String username, String password, String name, String email, String nickname, boolean isActive) {
+    public static User of(String username, String password, String name, String email, String nickname, UserRole userRole, boolean isActive) {
         return User.builder()
                 .username(username)
                 .password(password)
                 .name(name)
                 .email(email)
                 .nickname(nickname)
+                .userRole(userRole)
                 .isActive(isActive)
                 .build();
     }
