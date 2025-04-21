@@ -1,9 +1,6 @@
 package com.soundmonster.soundmonster_backend.domain.user.mapper;
 
-import com.soundmonster.soundmonster_backend.domain.user.dto.PostUsersRequest;
-import com.soundmonster.soundmonster_backend.domain.user.dto.PostUsersResponse;
-import com.soundmonster.soundmonster_backend.domain.user.dto.ServicePostUsersRequest;
-import com.soundmonster.soundmonster_backend.domain.user.dto.ServicePostUsersResponse;
+import com.soundmonster.soundmonster_backend.domain.user.dto.*;
 
 public final class UserDtoMapper {
 
@@ -25,5 +22,16 @@ public final class UserDtoMapper {
                 response.getNickname(),
                 response.getJwt()
         );
+    }
+    
+    public static ServicePostUsersLoginRequest toServicePostUsersLoginRequest(PostUsersLoginRequest request) {
+        return new ServicePostUsersLoginRequest(
+                request.getUsername(),
+                request.getPassword()
+        );
+    }
+    
+    public static PostUsersLoginResponse toPostUsersLoginResponse(ServicePostUsersLoginResponse response){
+        return new PostUsersLoginResponse(response.getJwt());
     }
 }

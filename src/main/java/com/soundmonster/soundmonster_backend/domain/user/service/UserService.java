@@ -1,7 +1,6 @@
 package com.soundmonster.soundmonster_backend.domain.user.service;
 
-import com.soundmonster.soundmonster_backend.domain.user.dto.ServicePostUsersRequest;
-import com.soundmonster.soundmonster_backend.domain.user.dto.ServicePostUsersResponse;
+import com.soundmonster.soundmonster_backend.domain.user.dto.*;
 import com.soundmonster.soundmonster_backend.domain.user.entity.User;
 import com.soundmonster.soundmonster_backend.domain.user.entity.UserRole;
 import com.soundmonster.soundmonster_backend.domain.user.repository.UserRepository;
@@ -39,5 +38,18 @@ public class UserService {
 
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
+    }
+
+    public ServicePostUsersLoginResponse postUsersLogin(ServicePostUsersLoginRequest request) {
+        User user = userRepository.findByUsernameAndIsActiveTrue(request.getUsername())
+                .orElseThrow(() -> new IllegalArgumentException("사용자가 존재하지 않습니다."));
+
+        if (!user.getPassword().equals(request.getPassword())) {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }
+
+        String jwt = jwtProvider.createToken(user);
+
+        return new ServicePostUsersLoginResponse(jwt);
     }
 }
