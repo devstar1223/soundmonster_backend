@@ -55,6 +55,6 @@ public class UserService {
 
         String jwt = jwtProvider.createToken(user);
 
-        return new ServiceLoginResponse(jwt);
+        return new ServiceLoginResponse(jwt,user.getNickname());
     }
 }

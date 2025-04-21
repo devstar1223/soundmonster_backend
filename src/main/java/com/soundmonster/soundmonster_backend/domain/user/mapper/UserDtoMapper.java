@@ -39,6 +39,6 @@ public final class UserDtoMapper {
     }
     
     public static LoginResponse toPostUsersLoginResponse(ServiceLoginResponse response){
-        return new LoginResponse(response.getJwt());
+        return new LoginResponse(response.getJwt(),response.getNickname());
     }
 }

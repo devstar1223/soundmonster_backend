@@ -9,4 +9,5 @@ import lombok.ToString;
 @RequiredArgsConstructor
 public class ServiceLoginResponse {
     private final String jwt;
+    private final String nickname;
 }
