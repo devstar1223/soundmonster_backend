@@ -4,6 +4,8 @@ import com.soundmonster.soundmonster_backend.domain.user.dto.*;
 import com.soundmonster.soundmonster_backend.domain.user.entity.User;
 import com.soundmonster.soundmonster_backend.domain.user.entity.UserRole;
 import com.soundmonster.soundmonster_backend.domain.user.repository.UserRepository;
+import com.soundmonster.soundmonster_backend.global.exception.exceptions.PasswordMismatch;
+import com.soundmonster.soundmonster_backend.global.exception.exceptions.UserNotFoundException;
 import com.soundmonster.soundmonster_backend.global.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -42,10 +44,10 @@ public class UserService {
 
     public ServicePostUsersLoginResponse postUsersLogin(ServicePostUsersLoginRequest request) {
         User user = userRepository.findByUsernameAndIsActiveTrue(request.getUsername())
-                .orElseThrow(() -> new IllegalArgumentException("사용자가 존재하지 않습니다."));
+                .orElseThrow(UserNotFoundException::new);
 
         if (!user.getPassword().equals(request.getPassword())) {
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+            throw new PasswordMismatch();
         }
 
         String jwt = jwtProvider.createToken(user);
