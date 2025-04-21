@@ -26,8 +26,7 @@ public final class UserDtoMapper {
 
     public static SignUpResponse toPostUsersResponse(ServiceSignUpResponse response) {
         return new SignUpResponse(
-                response.getNickname(),
-                response.getJwt()
+                response.getNickname()
         );
     }
     

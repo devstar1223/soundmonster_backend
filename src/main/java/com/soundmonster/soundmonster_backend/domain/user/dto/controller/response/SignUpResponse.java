@@ -9,5 +9,4 @@ import lombok.ToString;
 @RequiredArgsConstructor
 public class SignUpResponse {
     private final String nickname;
-    private final String jwt;
 }
