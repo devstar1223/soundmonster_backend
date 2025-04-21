@@ -37,3 +37,6 @@ out/
 .vscode/
 /Dockerfile
 /data/
+
+# Security
+application.properties
