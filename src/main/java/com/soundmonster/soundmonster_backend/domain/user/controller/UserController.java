@@ -1,6 +1,11 @@
 package com.soundmonster.soundmonster_backend.domain.user.controller;
 
-import com.soundmonster.soundmonster_backend.domain.user.dto.*;
+import com.soundmonster.soundmonster_backend.domain.user.dto.controller.request.LoginRequest;
+import com.soundmonster.soundmonster_backend.domain.user.dto.controller.response.LoginResponse;
+import com.soundmonster.soundmonster_backend.domain.user.dto.controller.request.SignUpRequest;
+import com.soundmonster.soundmonster_backend.domain.user.dto.controller.response.SignUpResponse;
+import com.soundmonster.soundmonster_backend.domain.user.dto.service.response.ServiceLoginResponse;
+import com.soundmonster.soundmonster_backend.domain.user.dto.service.response.ServiceSignUpResponse;
 import com.soundmonster.soundmonster_backend.domain.user.service.UserService;
 import com.soundmonster.soundmonster_backend.global.dto.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,8 +34,8 @@ public class UserController {
                     """
 //            security = @SecurityRequirement(name = "JWT")
     )
-    public ResponseEntity<ApiResponse<PostUsersResponse>> postUsers(@RequestBody PostUsersRequest request) {
-        ServicePostUsersResponse serviceResponse = userService.postUsers(toServicePostUsersRequest(request));
+    public ResponseEntity<ApiResponse<SignUpResponse>> signUp(@RequestBody SignUpRequest request) {
+        ServiceSignUpResponse serviceResponse = userService.signUp(toServicePostUsersRequest(request));
 
         return ResponseEntity.ok(ApiResponse.ok(toPostUsersResponse(serviceResponse), "회원가입 완료"));
     }
@@ -42,8 +47,8 @@ public class UserController {
                     로그인 API (추후 설명 추가)
                     """
     )
-    public ResponseEntity<ApiResponse<PostUsersLoginResponse>> login(@RequestBody PostUsersLoginRequest request) {
-        ServicePostUsersLoginResponse serviceResponse = userService.postUsersLogin(toServicePostUsersLoginRequest(request));
+    public ResponseEntity<ApiResponse<LoginResponse>> login(@RequestBody LoginRequest request) {
+        ServiceLoginResponse serviceResponse = userService.login(toServicePostUsersLoginRequest(request));
 
         return ResponseEntity.ok(ApiResponse.ok(toPostUsersLoginResponse(serviceResponse),"로그인 완료"));
     }
