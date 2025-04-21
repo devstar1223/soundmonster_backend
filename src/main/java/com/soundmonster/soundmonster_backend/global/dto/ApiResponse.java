@@ -1,5 +1,6 @@
 package com.soundmonster.soundmonster_backend.global.dto;
 
+import com.soundmonster.soundmonster_backend.global.exception.dto.ErrorResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
@@ -16,5 +17,9 @@ public class ApiResponse<T> {
 
     public static <T> ApiResponse<T> ok(T data, String message) {
         return new ApiResponse<>(HttpStatus.OK,true, message, data);
+    }
+
+    public static ApiResponse<ErrorResponse> failure(ErrorResponse errorResponse) {
+        return new ApiResponse<>(HttpStatus.valueOf(errorResponse.getStatus()), false, errorResponse.getMessage(), errorResponse);
     }
 }
