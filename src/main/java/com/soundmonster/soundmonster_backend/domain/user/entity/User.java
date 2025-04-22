@@ -11,7 +11,9 @@ import lombok.NoArgsConstructor;
 @Table(
         name = "users",
         indexes = {
-                @Index(name = "idx_username_is_active", columnList = "username, isActive")
+                @Index(name = "idx_username_is_active", columnList = "username, isActive"),
+                @Index(name = "idx_email_is_active", columnList = "email, isActive"),
+                @Index(name = "idx_nickname_is_active", columnList = "nickname, isActive")
         }
 )
 @Getter
