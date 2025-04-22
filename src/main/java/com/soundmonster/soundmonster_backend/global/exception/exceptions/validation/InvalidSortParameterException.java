@@ -1,4 +1,4 @@
-package com.soundmonster.soundmonster_backend.global.exception.exceptions;
+package com.soundmonster.soundmonster_backend.global.exception.exceptions.validation;
 
 import com.soundmonster.soundmonster_backend.global.exception.model.BaseException;
 import com.soundmonster.soundmonster_backend.global.exception.model.ErrorCode;
